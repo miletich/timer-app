@@ -19,12 +19,10 @@ const Navigation = () =>
           <NavItem eventKey={2}>Countdown</NavItem>
         </LinkContainer>
       </Nav>
-      <Nav pullRight>
-        <Navbar.Text>
-          Created by{'  '}
-          <Navbar.Link href="http://miletich.cc">Dušan Miletić</Navbar.Link>
-        </Navbar.Text>
-      </Nav>
+      <Navbar.Text>
+        Created by{'  '}
+        <Navbar.Link href="http://miletich.cc">Dušan Miletić</Navbar.Link>
+      </Navbar.Text>
     </Navbar.Collapse>
   </Navbar>
 
