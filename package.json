@@ -49,6 +49,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "babel-preset-stage-0": "^6.22.0",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
@@ -86,7 +87,8 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "stage-0"
     ]
   },
   "eslintConfig": {
