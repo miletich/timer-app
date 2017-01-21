@@ -1,0 +1,16 @@
+.navbar {
+  background-color: $nav-background;
+
+  .navbar-brand, .navbar-text {
+    color: $nav-text-color;
+  }
+
+  .navbar-nav>li>a, .navbar-link {
+    color: $nav-links-color;
+  }
+
+  .navbar-link {
+    font-weight: bold;
+  }
+
+}

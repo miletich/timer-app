@@ -21,7 +21,7 @@ const Navigation = () =>
       </Nav>
       <Nav pullRight>
         <Navbar.Text>
-          Created by:{'  '}
+          Created by{'  '}
           <Navbar.Link href="http://miletich.cc">Dušan Miletić</Navbar.Link>
         </Navbar.Text>
       </Nav>
