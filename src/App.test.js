@@ -6,6 +6,7 @@ import App from './App';
 import Countdown from './Countdown';
 import Clock from './components/Clock';
 import CountdownForm from './components/CountdownForm';
+import Controls from './components/Controls';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -98,6 +99,29 @@ describe('coundown', () => {
       setTimeout(() => {
         expect(countdown.state.count).toBe(0);
       }, 3000);
+    });
+  });
+});
+
+// Controls tests
+describe('Controls', () => {
+  it('should exist', () => {
+    expect(Controls).toExist();
+  });
+
+  describe('render', () => {
+    it('should render pause when started', () => {
+      const controls = TestUtils.renderIntoDocument(<Controls countdownStatus="started"/>);
+      const pause = TestUtils.scryRenderedDOMComponentsWithTag(controls, 'button')[0].innerHTML;
+
+      expect(pause).toBe('Pause');
+    });
+
+    it('should render start when paused', () => {
+      const controls = TestUtils.renderIntoDocument(<Controls countdownStatus="paused" />);
+      const start = TestUtils.scryRenderedDOMComponentsWithTag(controls, 'button')[0].innerHTML;
+
+      expect(start).toBe('Start');
     });
   });
 });
