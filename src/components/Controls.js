@@ -4,26 +4,35 @@ import { Button } from 'react-bootstrap';
 class Controls extends Component {
   constructor(props) {
     super(props);
+    this.onStatusChange = this.onStatusChange.bind(this);
   }
 
   static propTypes = {
-    countdownStatus: React.PropTypes.string.isRequired
+    countdownStatus: React.PropTypes.string.isRequired,
+    onStatusChange: React.PropTypes.func.isRequired
+  }
+
+  onStatusChange(newStatus) {
+    return () => {
+      this.props.onStatusChange(newStatus);
+    }
   }
 
   render() {
     const { countdownStatus } = this.props;
-    function renderStartStopButton(){
+    const renderStartStopButton = () => {
       if (countdownStatus === 'started') {
-        return  <Button>Pause</Button>
+        return  <Button onClick={this.onStatusChange('paused')}>Pause</Button>
       } else if (countdownStatus === 'paused') {
-        return <Button bsStyle='primary'>Start</Button>
+        return <Button bsStyle='primary' onClick={this.onStatusChange('started')}>Start</Button>
       }
     }
 
     return (
       <div className='controls'>
         {renderStartStopButton()}
-        <Button bsStyle="danger">
+        <Button bsStyle="danger"
+          onClick={this.onStatusChange('stopped')}>
           Clear
         </Button>
       </div>
