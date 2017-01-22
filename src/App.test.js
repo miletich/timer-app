@@ -4,6 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import App from './App';
 import Clock from './components/Clock';
+import CountdownForm from './components/CountdownForm';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -49,5 +50,23 @@ describe('Clock', () => {
 
       expect(actual).toBe(expected);
     });
+  });
+});
+
+// CountdownForm tests
+describe('CountdownForm', () => {
+  it('should exist', () => {
+    expect(CountdownForm).toExist();
+  });
+
+  it('should call onSetCountdown if valid seconds entered', () => {
+    const spy = expect.createSpy();
+    const countdownForm = TestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy}/>);
+    const form = TestUtils.findRenderedDOMComponentWithTag(countdownForm, 'form');
+
+    ReactDOM.findDOMNode(countdownForm.seconds).value = '109';
+    TestUtils.Simulate.submit(form);
+
+    expect(spy).toHaveBeenCalledWith(109);
   });
 });
