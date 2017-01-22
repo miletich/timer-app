@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import App from './App';
+import Countdown from './Countdown';
 import Clock from './components/Clock';
 import CountdownForm from './components/CountdownForm';
 
@@ -68,5 +69,35 @@ describe('CountdownForm', () => {
     TestUtils.Simulate.submit(form);
 
     expect(spy).toHaveBeenCalledWith(109);
+  });
+});
+
+// Coundown tests
+describe('coundown', () => {
+  it('should exist', () => {
+    expect(Countdown).toExist();
+  });
+
+  describe('handleSetCountdown', () => {
+    it('should set state to started and count down', () => {
+      const countdown = TestUtils.renderIntoDocument(<Countdown/>);
+      countdown.handleSetCountdown(10);
+
+      expect(countdown.state.count).toBe(10);
+      expect(countdown.state.countdownStatus).toBe('started');
+
+      setTimeout(() => {
+        expect(countdown.state.count).toBe(9);
+      },1001);
+    });
+
+    it('should not count down past 0', () => {
+      const countdown = TestUtils.renderIntoDocument(<Countdown />);
+      countdown.handleSetCountdown(1);
+
+      setTimeout(() => {
+        expect(countdown.state.count).toBe(0);
+      }, 3000);
+    });
   });
 });
