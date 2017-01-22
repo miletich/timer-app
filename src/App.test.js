@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import App from './App';
+import Timer from './Timer';
 import Countdown from './Countdown';
 import Clock from './components/Clock';
 import CountdownForm from './components/CountdownForm';
@@ -73,8 +74,63 @@ describe('CountdownForm', () => {
   });
 });
 
+// Timer tests
+describe('Timer', () => {
+  it('should exist', () => {
+    expect(Timer).toExist();
+  });
+
+  describe('handleStatusChange', () => {
+    it('should set state to started and count up', () => {
+      const timer = TestUtils.renderIntoDocument(<Timer />);
+      timer.handleStatusChange('started');
+
+      expect(timer.state.countStatus).toBe('started');
+
+      setTimeout(() => {
+        expect(timer.state.count).toBe(1);
+      }, 1001);
+    });
+
+    it('should set state to paused and stop counting', () => {
+      const timer = TestUtils.renderIntoDocument(<Timer />);
+      timer.handleStatusChange('started');
+
+      setTimeout(() => {
+        timer.handleStatusChange('paused');
+      }, 1001);
+
+      setTimeout(() => {
+        expect(timer.state.countStatus).toBe('paused');
+        expect(timer.state.count).toBe(1);
+      }, 1001);
+    });
+
+    it('should set state to stopped and reset the counter', () => {
+      const timer = TestUtils.renderIntoDocument(<Timer />);
+      timer.handleStatusChange('started');
+
+      setTimeout(() => {
+        timer.handleStatusChange('stopped');
+        expect(timer.state.countStatus).toBe('stopped');
+        expect(timer.state.count).toBe(0);
+      }, 2001);
+    });
+
+    it('should not count past 59:59', () => {
+      const timer = TestUtils.renderIntoDocument(<Timer />);
+      timer.state.count = 3599;
+      timer.handleStatusChange('started');
+
+      setTimeout(() => {
+        expect(timer.state.count).toBe(0);
+      }, 1001);
+    });
+  });
+});
+
 // Countdown tests
-describe('coundown', () => {
+describe('Countdown', () => {
   it('should exist', () => {
     expect(Countdown).toExist();
   });

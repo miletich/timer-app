@@ -35,9 +35,13 @@ class Timer extends Component {
   }
 
   startTimer() {
-    this.timer = setInterval(() => {
-      this.setState({count: ++this.state.count});
-    }, 1000);
+    if (this.state.count < 3600) {
+      this.timer = setInterval(() => {
+        this.setState({count: ++this.state.count});
+      }, 1000);
+    } else {
+      this.setState({countStatus: 'stopped'})
+    }
   }
 
   render() {
