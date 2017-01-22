@@ -23,7 +23,7 @@ class Controls extends Component {
     const renderStartStopButton = () => {
       if (countdownStatus === 'started') {
         return  <Button onClick={this.onStatusChange('paused')}>Pause</Button>
-      } else if (countdownStatus === 'paused') {
+      } else {
         return <Button bsStyle='primary' onClick={this.onStatusChange('started')}>Start</Button>
       }
     }
