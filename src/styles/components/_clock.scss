@@ -4,14 +4,14 @@
   border: 2px solid $clock-border-color;
   border-radius: 50%;
   display: flex;
-  height: 14rem;
-  width: 14rem;
+  height: 22rem;
+  width: 22rem;
   justify-content: center;
-  margin: 4rem auto;
+  margin: 6rem auto;
 }
 
 .clock-text {
   color: $clock-text-color;
-  font-size: 2.25rem;
+  font-size: 3rem;
   font-weight: 300;
 }
